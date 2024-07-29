@@ -94,7 +94,7 @@ func processFiles(files []os.DirEntry, projects, out, language string) EvalRules
 
 func calculatePercentagesAndGrades(results *EvalRulesResults) GradeThresholds {
     sort.Slice(results.ProjectFindings, func(i, j int) bool {
-        return results.ProjectFindings[i].Ratio < results.ProjectFindings[j].Ratio
+        return results.ProjectFindings[i].Ratio > results.ProjectFindings[j].Ratio
     })
 
     totalProjects := len(results.ProjectFindings)
@@ -134,9 +134,9 @@ func writeThresholdsToFile(thresholds GradeThresholds, outputDir string) error {
 func sortResults(results *EvalRulesResults) {
     sort.Slice(results.ProjectFindings, func(i, j int) bool {
         if results.ProjectFindings[i].Grade != results.ProjectFindings[j].Grade {
-            return results.ProjectFindings[i].Grade < results.ProjectFindings[j].Grade
+            return results.ProjectFindings[i].Grade > results.ProjectFindings[j].Grade
         }
-        return results.ProjectFindings[i].Ratio < results.ProjectFindings[j].Ratio
+        return results.ProjectFindings[i].Ratio > results.ProjectFindings[j].Ratio
     })
 }
 
