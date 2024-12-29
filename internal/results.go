@@ -42,7 +42,6 @@ func analyzeResults(projects, out, language string) {
 	results := processFiles(files, projects, out, language)
 	thresholds := calculatePercentagesAndGrades(&results)
 	sortResults(&results)
-	log.Printf("results: %v", results)
 	resultsJSON, err := json.Marshal(results)
 	if err != nil {
 		log.Fatalf("Error marshalling results to JSON: %v", err)
